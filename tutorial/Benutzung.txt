@@ -1,0 +1,14 @@
+Voraussetzungen:
+-Python Installation
+-ttkwidgets (pip install ttkwidgets)
+-setlX muss in den Umgebungsvariabeln registriert sein
+
+Benutzung:
+0) .zip irgendwo speichern, dann: Rechtsklick auf start.bat -> Verknüfung erstellen -> umbenennen (z.B. in "setlX") 
+	-> irgendwo hin verschieben, wo sie leicht zu finden ist
+1) Führe start.bat (oder die Verknüpfung) per doppelklick aus (die Konsole die sich mit öffnet darfst du nicht schließen)
+2) Gib deinen Code in das Fenster ein
+3) Klick "execute setlX"
+	-> In editor.txt wird dein Code gleichzeitig mit der Ausführung gespeichert
+	-> Bis zum Ende des Ausführens solltest du nirgendwo hinklicken
+	

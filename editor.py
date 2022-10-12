@@ -34,11 +34,6 @@ def Keyboardpress( key):
     elif key_char == "'":
         t.insert(INSERT, "'")
         t.mark_set(INSERT, INSERT + "-1c")
-    #elif key.keysym == "BackSpace":
-     #   print(t.get(INSERT + "-1c"))
-      #  print(t.get(INSERT))
-       # if (t.get(INSERT) == "}" or t.get(INSERT) == ")" or t.get(INSERT) == "]" or t.get(INSERT) == '"' or t.get(INSERT) == "'"):# and (t.get(INSERT) == "{" or t.get(INSERT) == "(" or t.get(INSERT) == "[" or t.get(INSERT) == '"' or t.get(INSERT) == "'") :
-        #    t.delete(INSERT)
     elif key.keysym == "Return" and (t.get(INSERT) == "}" or t.get(INSERT) == ")" or t.get(INSERT) == "]"):
         t.insert(INSERT, "  ")
         t.insert(INSERT, "\n")

@@ -5,7 +5,6 @@ from ttkwidgets.autocomplete import AutocompleteCombobox
 import subprocess
 
 
-
 def execute():
     text  = t.get("1.0", "end-1c")
 

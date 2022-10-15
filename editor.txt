@@ -1,5 +1,2 @@
-function := procedure(a){
-  return true;
-};
-
-print(function("Hello World");
+print()
+ ()

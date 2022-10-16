@@ -66,7 +66,7 @@ def get_matches(word):
     # return a list of pre-defined keywords.
     
     words = t.get("1.0", "end-1c").split()
-    words = ["print", "procedure", "if", ":=", "return", "true", "false"]
+    words = ["print();", "procedure(){\n\n};", "if", ":=", "return", "true", "false"]
     matches = [x for x in words if x.startswith(word)]
     return matches
 
@@ -91,27 +91,37 @@ def execute():
 #calculate the position of the brackets and highlight them
 def bracketsCalculation():
    #get the cursor position
-    t.tag_remove("highlight", "1.0", END)
+    clearTags()
     
     if t.get(INSERT + "-1c") == "(":
         highlight()
     elif t.get(INSERT + "-1c") == "{":
         highlight(movedIndex=-1)
 
+
+def clearTags():
+    t.tag_remove("highlight", "1.0", END)
+    t.tag_remove("warning", "1.0", END)
+
+
 #highlight the matching brackets in the text widget 
 def highlight(movedIndex=0):
     bracket_pairs = find_matching_parens(t.get("1.0", "end-1c"))
     t.tag_add("highlight", INSERT + "-1c", INSERT)
-    t.tag_config("highlight", background="#793e6d")
     x, y = t.index(INSERT).split(".")
     letter = 0
     for i in range(int(x)-1):
         letter += int(str(t.count(str(i+1) + ".0 linestart", str(i+1) + ".0 lineend")).replace("(", "").replace(",)", ""))
     letter += int(y) + movedIndex
+    found = False
     for i in bracket_pairs:
         if letter == i[0]:
+            found = True
             t.tag_add("highlight", INSERT + "+" + str(i[1] - i[0] - 1) +"c", INSERT + "+" + str(i[1] - i[0]) +"c")
-            t.tag_config("highlight", background="#793e6d")
+    if not found:
+        clearTags()
+        t.tag_add("warning", INSERT + "-1c", INSERT)
+        t.tag_config("warning", background="#a0a235")
 
 
 #find matching brackets in a string and return a list of tuples with the positions of the brackets in the string
@@ -136,7 +146,7 @@ def find_matching_parens(s, braces=None):
                 raise ValueError(f"mismatched brace at position {i}")
     
     if stack:
-        raise ValueError(f"no closing brace at position {i}")
+        return result
 
     return result
 
@@ -222,6 +232,6 @@ ip.Percolator(t).insertfilter(cdg)
 with open("editor.txt", "r") as f:
     t.insert(tk.END, f.read())
 
-
-
+t.tag_config("highlight", background="#793e6d")
+t.tag_config("warning", background="#ff0000d")
 screen.mainloop()

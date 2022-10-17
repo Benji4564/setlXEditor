@@ -1,5 +1,1 @@
-menge1 := {x: x in {1..100}};
-print(menge1);
-procedure(){
-
-};
+print();

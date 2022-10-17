@@ -53,7 +53,7 @@ class AutocompleteText(tk.Text):
                 # insert at the insertion cursor the remainder of
                 # the matched word, and apply the tag "sel" so that
                 # it is selected. Also, add the "autocomplete" text
-                # which will make it easier to find later.
+                # which will make it easier to find later
                 self.insert(insert, remainder, ("sel", "autocomplete"))
 
                 # move the cursor back to the saved position
@@ -66,7 +66,7 @@ def get_matches(word):
     # return a list of pre-defined keywords.
     
     words = t.get("1.0", "end-1c").split()
-    words = ["print();", "procedure(){\n\n};", "if", ":=", "return", "true", "false"]
+    words = ["print();", "procedure", "if", ":=", "return", "true", "false"]
     matches = [x for x in words if x.startswith(word)]
     return matches
 
@@ -128,6 +128,7 @@ def highlight(movedIndex=0):
 def find_matching_parens(s, braces=None):
     openers = braces or {"{": "}", "(": ")", "[": "]"}
     closers = {v: k for k, v in openers.items()}
+    print(closers)
     stack = []
     result = []
 

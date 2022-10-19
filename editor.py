@@ -126,9 +126,8 @@ def highlight(movedIndex=0):
 
 #find matching brackets in a string and return a list of tuples with the positions of the brackets in the string
 def find_matching_parens(s, braces=None):
-    openers = braces or {"{": "}", "(": ")", "[": "]"}
+    openers = braces or {"{": "}", "[": "]"}
     closers = {v: k for k, v in openers.items()}
-    print(closers)
     stack = []
     result = []
 

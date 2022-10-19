@@ -66,7 +66,7 @@ def get_matches(word):
     # return a list of pre-defined keywords.
     
     words = t.get("1.0", "end-1c").split()
-    words = ["print", "procedure", "if", ":=", "return", "true", "false"]
+    words = ["print", "procedure", "if", ":=", "return", "true", "false", "forall", "exsits"]
     matches = [x for x in words if x.startswith(word)]
     return matches
 
@@ -203,7 +203,7 @@ output.insert(END, "Output here")
 output.grid(row=3, column=0)
 
 cdg = ic.ColorDelegator()
-cdg.prog = re.compile(r'\b(?P<BOOL>true|false)\b|\b(?P<FUNCTION>procedure)\b|' + ic.make_pat(), re.S)
+cdg.prog = re.compile(r'\b(?P<BOOL>true|false)\b|\b(?P<FUNCTION>procedure|forall|exsits)\b|' + ic.make_pat(), re.S)
 cdg.idprog = re.compile(r'\s+(\w+)', re.S)
 
 

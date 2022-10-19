@@ -1,2 +1,1 @@
-menge1 := {x:x in {1..100} | x%5==0 && x%7==0};
-print(menge1);
+print();

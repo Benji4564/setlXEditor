@@ -86,6 +86,14 @@ def execute():
     output.delete("1.0", END)
     output.insert(END, out)
     output.insert(END, error)
+    errorArray = (str(error)[2:-1]).replace("\\n", " ").split()
+    t.tag_remove("error", "1.0", END)
+    for index, i in enumerate(errorArray):
+        if i == "line":
+            line = errorArray[index+1]
+            t.tag_add("error", line.replace(":", ".") + "-1c", line.replace(":", ".") )
+            t.tag_config("error", background="#aa0000")
+            
 
 
 #calculate the position of the brackets and highlight them
@@ -93,15 +101,16 @@ def bracketsCalculation():
    #get the cursor position
     clearTags()
     
-    if t.get(INSERT + "-1c") == "(":
-        highlight()
-    elif t.get(INSERT + "-1c") == "{":
+    # if t.get(INSERT + "-1c") == "(":
+    #     highlight()
+    if t.get(INSERT + "-1c") == "{":
         highlight(movedIndex=-1)
 
 
 def clearTags():
     t.tag_remove("highlight", "1.0", END)
     t.tag_remove("warning", "1.0", END)
+    t.tag_remove("error", "1.0", END)
 
 
 #highlight the matching brackets in the text widget 
@@ -128,7 +137,6 @@ def highlight(movedIndex=0):
 def find_matching_parens(s, braces=None):
     openers = braces or {"{": "}", "(": ")", "[": "]"}
     closers = {v: k for k, v in openers.items()}
-    print(closers)
     stack = []
     result = []
 

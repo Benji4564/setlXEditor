@@ -206,7 +206,7 @@ screen.geometry("900x600")
 label_header = Label(screen, text="SetlX editor", font=("Arial", 15), bg="black", fg="white")
 label_header.grid(row=0, columnspan=3)
 
-t = AutocompleteText(screen, height=15, width=100, font=("Arial", 13), bg="#202020", fg="white", insertbackground="white", autocomplete= get_matches)
+t = AutocompleteText(screen, height=15, width=100, font=("Arial", 13), bg="#202020", fg="white", insertbackground="white", autocomplete= get_matches, undo=True)
 t.grid(row=1, column=0)
 frame = tk.Frame(screen)
 frame.grid(row=2, column=0)
